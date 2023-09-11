@@ -1,11 +1,8 @@
-#![no_std]
-
 use revm::{
     db::{CacheDB, EmptyDB},
     primitives::{ruint::Uint, AccountInfo, Bytecode, Bytes, TransactTo, B160, B256, U256},
     EVM,
 };
-use runtime::print;
 
 /*
 mstore(0, 666)
@@ -25,7 +22,6 @@ static CONTRACT_ADDR: B160 = B160([
     0x47, 0x1f, 0x18, 0x52,
 ]);
 
-#[no_mangle]
 fn main() {
     let mut db = CacheDB::new(EmptyDB::default());
 

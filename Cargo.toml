@@ -5,4 +5,4 @@ edition = "2021"
 
 [dependencies]
 revm = { git = "https://github.com/powdr-labs/revm.git", branch = "no-std", default-features = false }
-runtime = { git = "https://github.com/powdr-labs/powdr.git", branch = "main" }
+# runtime = { git = "https://github.com/powdr-labs/powdr.git", branch = "main" }
