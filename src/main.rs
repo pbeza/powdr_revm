@@ -48,13 +48,13 @@ fn main() {
 
     match result.result {
         revm::primitives::ExecutionResult::Success {
-            reason,
-            gas_used,
-            gas_refunded,
-            logs,
+            reason: _,
+            gas_used: _,
+            gas_refunded: _,
+            logs: _,
             output,
         } => print!("Success: {:#?}", output.into_data()),
-        revm::primitives::ExecutionResult::Revert { gas_used, output } => panic!("Revert!"),
-        revm::primitives::ExecutionResult::Halt { reason, gas_used } => panic!("Halt!"),
+        revm::primitives::ExecutionResult::Revert { gas_used: _, output: _ } => panic!("Revert!"),
+        revm::primitives::ExecutionResult::Halt { reason: _, gas_used: _ } => panic!("Halt!"),
     };
 }
