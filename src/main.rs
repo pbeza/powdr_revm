@@ -34,8 +34,6 @@ fn main() {
     let mut evm: EVM<CacheDB<EmptyDB>> = EVM::new();
     evm.database(db);
 
-    let result = evm.transact().unwrap();
-
     // fill in missing bits of env struc
     // change that to whatever caller you want to be
     evm.env.tx.caller = B160::from_slice(&[0; 20]);
@@ -46,6 +44,8 @@ fn main() {
     // transaction value in wei
     evm.env.tx.value = U256::try_from(0).unwrap();
 
+    let result = evm.transact().unwrap();
+
     match result.result {
         revm::primitives::ExecutionResult::Success {
             reason: _,
@@ -54,7 +54,13 @@ fn main() {
             logs: _,
             output,
         } => print!("Success: {:#?}", output.into_data()),
-        revm::primitives::ExecutionResult::Revert { gas_used: _, output: _ } => panic!("Revert!"),
-        revm::primitives::ExecutionResult::Halt { reason: _, gas_used: _ } => panic!("Halt!"),
+        revm::primitives::ExecutionResult::Revert {
+            gas_used: _,
+            output: _,
+        } => panic!("Revert!"),
+        revm::primitives::ExecutionResult::Halt {
+            reason: _,
+            gas_used: _,
+        } => panic!("Halt!"),
     };
 }
